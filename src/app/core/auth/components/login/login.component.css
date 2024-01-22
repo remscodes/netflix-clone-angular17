@@ -1,5 +1,5 @@
 .login-background {
-  background: black url("/assets/netflix-login-background.jpg") no-repeat center;
+  background: url("/netflix-clone-angular17/assets/netflix-login-background.jpg"), url("/assets/netflix-login-background.jpg") black  no-repeat center;
   background-size: cover;
   transform: scale(1.05);
   filter: brightness(0.4);
