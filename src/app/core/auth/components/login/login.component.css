@@ -1,4 +1,6 @@
 .login-background {
-  background: url("/assets/netflix-login-background.jpg") no-repeat center;
+  background: black url("/assets/netflix-login-background.jpg") no-repeat center;
   background-size: cover;
+  transform: scale(1.05);
+  filter: brightness(0.4);
 }

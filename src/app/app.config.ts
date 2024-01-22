@@ -4,6 +4,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideRouter } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import { AUTH_PROVIDERS } from './core/auth/auth.providers';
+import { MATERIAL_PROVIDERS } from './core/material/material.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     AUTH_PROVIDERS,
     provideRouter(APP_ROUTES),
+    MATERIAL_PROVIDERS,
   ],
 };
