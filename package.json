@@ -1,14 +1,26 @@
 {
   "name": "netflix-clone-angular17",
   "version": "0.0.0",
+  "private": true,
+  "description": "Netflix clone using Angular 17",
+  "license": "MIT",
+  "author": {
+    "name": "Rémy Abitbol",
+    "url": "https://github.com/remscodes"
+  },
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
+    "start:host": "pnpm run start --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remscodes/netflix-clone-angular17"
+  },
+  "engines": {
+    "node": "^18.10.0 || ^20.9.0"
+  },
   "dependencies": {
     "@angular/animations": "^17.1.0",
     "@angular/common": "^17.1.0",
