@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@use 'palettes' as p;
+
+$app-primary: mat.define-palette(p.$primary);
+$app-accent: mat.define-palette(p.$accent);
+$app-warn: mat.define-palette(p.$warn);
+
+$app-theme: mat.define-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  )
+));
+
+@mixin all() {
+  @include mat.core();
+  @include mat.all-component-themes($app-theme);
+}
