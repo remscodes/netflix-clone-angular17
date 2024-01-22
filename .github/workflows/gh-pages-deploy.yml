@@ -29,6 +29,9 @@ jobs:
       - name: Build project
         run: pnpm run build
 
+      - name: Copy index into 404
+        run: cp -v dist/netflix-clone-angular17/browser/index.html dist/netflix-clone-angular17/browser/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
