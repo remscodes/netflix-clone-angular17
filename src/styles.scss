@@ -1,0 +1,30 @@
+@use 'styles/theme';
+@use 'styles/colors';
+
+//@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@include theme.all();
+
+:root {
+  --primary-color: #{colors.$primary-color};
+  --accent-color: #{colors.$accent-color};
+  --warn-color: #{colors.$warn-color};
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
