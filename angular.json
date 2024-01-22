@@ -43,7 +43,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/netflix-clone-angular17/"
             },
             "development": {
               "optimization": false,
