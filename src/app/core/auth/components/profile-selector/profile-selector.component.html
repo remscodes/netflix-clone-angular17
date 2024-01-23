@@ -1,17 +1,18 @@
-<div class="flex flex-col h-full justify-center text-white">
+<div @selectorEnter class="flex flex-col h-full justify-center text-white select-none overflow-hidden">
 
-  <div class="flex flex-col justify-center items-center">
+  <div id="profile-selector" class="flex flex-col justify-center items-center">
 
     <span class="text-7xl">Qui est-ce ?</span>
 
     <div class="flex gap-10 p-10">
-      @for (profile of mockProfiles; track profile.name) {
-        <app-profile-box [profile]="profile"/>
+      @for (profile of mockProfiles; track profile.name; let index = $index) {
+        <app-profile-box [profile]="profile" [index]="index"/>
       }
     </div>
 
-    <div class="py-5 px-10 rounder border border-solid border-gray-500 cursor-pointer !hover:text-white hover:border-white">
-      <span class="text-2xl text-gray-500">Gérer les profils</span>
+    <div
+      class="group py-5 px-10 rounder border border-solid border-gray-500 cursor-pointer hover:border-white">
+      <span class="text-2xl text-gray-500 group-hover:text-white">Gérer les profils</span>
     </div>
   </div>
 </div>
