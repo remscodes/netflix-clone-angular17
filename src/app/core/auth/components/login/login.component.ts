@@ -1,13 +1,15 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel, MatPrefix } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
+import { MatOption, MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { concatMap, delay, interval, last, map, Observable, scan, take, tap } from 'rxjs';
+import { concatMap, delay, interval, last, map, Observable, take, tap } from 'rxjs';
 import { Auth } from '../../services/auth.service';
 
 @Component({
@@ -21,6 +23,10 @@ import { Auth } from '../../services/auth.service';
     MatError,
     MatCheckbox,
     MatLabel,
+    MatSelect,
+    MatOption,
+    MatIcon,
+    MatPrefix,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -53,6 +59,8 @@ export class LoginComponent implements OnInit {
     remember: [true, Validators.required],
   });
 
+  public langControl = new FormControl('Français');
+
   public ngOnInit(): void {
     this.fillForm();
   }
@@ -69,9 +77,8 @@ export class LoginComponent implements OnInit {
 
   private fillInput(control: AbstractControl, finalValue: string): Observable<string> {
     return interval(30).pipe(
+      map((index: number) => finalValue.slice(0, index + 1)),
       delay(600),
-      map((index: number) => finalValue[index % finalValue.length]),
-      scan((acc: string, value: string) => `${acc}${value}`),
       tap((value: string) => control.setValue(value)),
       take(finalValue.length),
       takeUntilDestroyed(this.destroyRef),
