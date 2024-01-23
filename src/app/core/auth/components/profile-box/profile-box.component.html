@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center gap-2 cursor-pointer">
+  <img [ngSrc]="profile().imgUrl"
+       class="relative rounded select-none after:border-solid after:absolute after:top-0 after:w-full after:h-full after:border-4 after:box-border"
+       alt=""
+       [width]="200"
+       [height]="200"
+       draggable="false">
+
+  <span class="text-2xl text-gray-500">{{ profile().name }}</span>
+</div>

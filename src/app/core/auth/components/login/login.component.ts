@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(login!, password!).pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe({
-      next: () => this.router.navigate(['/home']),
+      next: () => this.router.navigate(['browse']),
     });
   }
 }
