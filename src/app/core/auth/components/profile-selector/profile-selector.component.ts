@@ -22,7 +22,7 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
           animate('300ms', style({ opacity: 1 })),
           query('#profile-selector', [
             style({ transform: 'scale(1.2)' }),
-            animate('600ms ease', style({ transform: 'scale(1)' })),
+            animate('500ms ease', style({ transform: 'scale(1)' })),
           ]),
           query('@*', animateChild(), { delay: '200ms' }),
         ]),
@@ -37,4 +37,6 @@ export class ProfileSelectorComponent {
     { name: 'Chad Commercial', imgUrl: `${isDevMode() ? '/assets/gigachad.jpg' : `/netflix-clone-angular17/assets/gigachad.jpg`}` },
     { name: 'Dev Senior Kermit', imgUrl: `${isDevMode() ? '/assets/senior-kermit.jpg' : `/netflix-clone-angular17/assets/senior-kermit.jpg`}` },
   ];
+
+  reveal = true
 }

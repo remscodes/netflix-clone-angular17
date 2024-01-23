@@ -1,6 +1,8 @@
-import { animate, group, style, transition, trigger } from '@angular/animations';
+import { group, transition, trigger, useAnimation } from '@angular/animations';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
+import { TOP_TO_BOT_ANIMATION } from '../../../../shared/animations/top-to-bot.animation';
 import { RigidImgDirective } from '../../../../shared/directives/rigid-img.directive';
 import { Profile } from '../../models/profile.model';
 
@@ -13,16 +15,15 @@ import { Profile } from '../../models/profile.model';
   ],
   templateUrl: './profile-box.component.html',
   styleUrl: './profile-box.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   animations: [
     trigger('fadeInBottom', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-20px)' }),
         group([
-          animate('1s {{delay}}ms ease', style({ opacity: 1 })),
-          animate('500ms {{delay}}ms ease', style({ transform: 'translateY(0)' })),
+          useAnimation(FADE_IN_ANIMATION),
+          useAnimation(TOP_TO_BOT_ANIMATION),
         ]),
-      ], { params: { delay: 0 } }),
+      ]),
     ]),
   ],
 })
@@ -31,8 +32,8 @@ export class ProfileBoxComponent {
 
   public profile = input.required<Profile>();
 
-  public animationDelay = input(0, {
+  public animationDelay = input('0ms', {
     alias: 'index',
-    transform: (v: number) => (v + 1) * 100,
+    transform: (v: number) => `${(v + 1) * 100}ms`,
   });
 }

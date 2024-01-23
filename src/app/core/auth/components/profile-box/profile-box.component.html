@@ -1,12 +1,11 @@
 <div [@fadeInBottom]="{ value: '', params: { delay: this.animationDelay() }}"
      class="group flex flex-col items-center gap-2 cursor-pointer">
 
-  <div class="image-box group-hover:after:border-solid">
+  <div class="image-box group-hover:after:border-solid h-[200px] w-[200px]">
     <img rigid
          class="rounded"
          [ngSrc]="profile().imgUrl"
-         [width]="200"
-         [height]="200"
+         fill=""
          alt="">
   </div>
 
