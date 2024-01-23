@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, group, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -32,16 +32,13 @@ import { Auth } from '../../services/auth.service';
   styleUrl: './login.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('zoomIn', [
+    trigger('loginBackgroundEnter', [
       transition(':enter', [
-        style({ transform: 'scale(1)' }),
-        animate('4s ease'),
-      ]),
-    ]),
-    trigger('bright', [
-      transition(':enter', [
-        style({ filter: 'brightness(0)' }),
-        animate('2s ease'),
+        style({ filter: 'brightness(0)', transform: 'scale(1)' }),
+        group([
+          animate('2s ease', style({ filter: 'brightness(0.4)' })),
+          animate('4s ease', style({ transform: 'scale(1.05)' })),
+        ]),
       ]),
     ]),
   ],
@@ -59,7 +56,9 @@ export class LoginComponent implements OnInit {
     remember: [true, Validators.required],
   });
 
-  public langControl = new FormControl('Français');
+  public langs = ['Français', 'Anglais'] as const;
+
+  public langControl = new FormControl(this.langs[0]);
 
   public ngOnInit(): void {
     this.fillForm();
@@ -68,20 +67,19 @@ export class LoginComponent implements OnInit {
   private fillForm(): void {
     const { login, password } = this.form.controls;
 
-    this.fillInput(login, 'john.doe@example.org').pipe(
+    this.fillInput(login, 'john.doe@example.org', 300).pipe(
       last(),
-      concatMap(() => this.fillInput(password, 'netflix-angular-17')),
+      concatMap(() => this.fillInput(password, 'netflix-angular-17', 200)),
       takeUntilDestroyed(this.destroyRef),
     ).subscribe();
   }
 
-  private fillInput(control: AbstractControl, finalValue: string): Observable<string> {
+  private fillInput(control: AbstractControl, finalValue: string, withDelay: number): Observable<string> {
     return interval(30).pipe(
       map((index: number) => finalValue.slice(0, index + 1)),
-      delay(600),
+      delay(withDelay),
       tap((value: string) => control.setValue(value)),
       take(finalValue.length),
-      takeUntilDestroyed(this.destroyRef),
     );
   }
 
@@ -93,8 +91,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(login!, password!).pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe({
-      next: () => this.router.navigate(['/home']),
+      next: () => this.router.navigate(['browse']),
     });
   }
 }
-

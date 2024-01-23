@@ -1,0 +1,14 @@
+<div [@fadeInBottom]="{ value: '', params: { delay: this.animationDelay() }}"
+     class="group flex flex-col items-center gap-2 cursor-pointer">
+
+  <div class="image-box group-hover:after:border-solid">
+    <img rigid
+         class="rounded"
+         [ngSrc]="profile().imgUrl"
+         [width]="200"
+         [height]="200"
+         alt="">
+  </div>
+
+  <span class="text-2xl text-[#808080] group-hover:text-white">{{ profile().name }}</span>
+</div>

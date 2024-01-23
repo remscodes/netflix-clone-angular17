@@ -1,0 +1,13 @@
+.image-box {
+  @apply
+  relative
+  after:content-['']
+  after:absolute
+  after:h-full
+  after:w-full
+  after:rounded
+  after:top-0
+  after:left-0
+  after:border-4
+  after:border-white;
+}

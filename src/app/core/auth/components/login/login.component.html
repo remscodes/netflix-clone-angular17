@@ -58,23 +58,24 @@
 
     <span>Des questions ?</span>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <span class="cursor-pointer">FAQ</span>
-      <span class="cursor-pointer">Centre d'aide</span>
-      <span class="cursor-pointer">Boutique Netflix</span>
-      <span class="cursor-pointer">Conditions d'utilisation</span>
-      <span class="cursor-pointer">Confidentialité</span>
-      <span class="cursor-pointer">Préférences de cookie</span>
-      <span class="cursor-pointer">Mentions légales</span>
-      <span class="cursor-pointer">Choix lié à la pub</span>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 [&>span]:cursor-pointer">
+      <span>FAQ</span>
+      <span>Centre d'aide</span>
+      <span>Boutique Netflix</span>
+      <span>Conditions d'utilisation</span>
+      <span>Confidentialité</span>
+      <span>Préférences de cookie</span>
+      <span>Mentions légales</span>
+      <span>Choix lié à la pub</span>
     </div>
 
     <div>
       <mat-form-field>
         <mat-icon matPrefix>language</mat-icon>
         <mat-select [formControl]="langControl">
-          <mat-option value="Français">Français</mat-option>
-          <mat-option value="Anglais">Anglais</mat-option>
+          @for (lang of langs; track $index) {
+            <mat-option [value]="lang">{{ lang }}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
     </div>
@@ -82,5 +83,5 @@
 </div>
 
 <div class="h-full w-full left-0 top-0 absolute overflow-hidden">
-  <div @zoomIn @bright class="login-background h-full w-full"></div>
+  <div @loginBackgroundEnter class="login-background h-full w-full"></div>
 </div>
