@@ -1,4 +1,5 @@
 import { Directive } from '@angular/core';
+import { LazyImgDirective } from './lazy-img.directive';
 
 @Directive({
   selector: 'img[rigid]',
@@ -7,5 +8,6 @@ import { Directive } from '@angular/core';
     draggable: 'false',
     class: 'select-none',
   },
+  hostDirectives: [LazyImgDirective],
 })
 export class RigidImgDirective {}

@@ -56,7 +56,9 @@ export class LoginComponent implements OnInit {
     remember: [true, Validators.required],
   });
 
-  public langControl = new FormControl('Français');
+  public langs = ['Français', 'Anglais'] as const;
+
+  public langControl = new FormControl(this.langs[0]);
 
   public ngOnInit(): void {
     this.fillForm();
@@ -72,13 +74,12 @@ export class LoginComponent implements OnInit {
     ).subscribe();
   }
 
-  private fillInput(control: AbstractControl, finalValue: string, useDelay: number): Observable<string> {
+  private fillInput(control: AbstractControl, finalValue: string, withDelay: number): Observable<string> {
     return interval(30).pipe(
       map((index: number) => finalValue.slice(0, index + 1)),
-      delay(useDelay),
+      delay(withDelay),
       tap((value: string) => control.setValue(value)),
       take(finalValue.length),
-      takeUntilDestroyed(this.destroyRef),
     );
   }
 
@@ -94,4 +95,3 @@ export class LoginComponent implements OnInit {
     });
   }
 }
-
