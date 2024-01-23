@@ -15,9 +15,9 @@
   </div>
 
   <!--  Card container-->
-  <div class="flex flex-col flex-1 items-center p-10">
+  <div class="flex flex-col flex-1 items-center pt-2 pb-28 px-2">
     <!--  Card -->
-    <div class="flex flex-col gap-8 p-16 w-full max-w-[450px] rounded bg-transparent-black text-white">
+    <div class="flex flex-col gap-8 p-6 sm:p-16 w-full max-w-[450px] rounded bg-transparent-black text-white">
 
       <span class="text-3xl">S'identifier</span>
 
@@ -41,10 +41,41 @@
 
         <button mat-flat-button color="primary">S'identifier</button>
 
-        <mat-checkbox formControlName="remember">
-          <span class="text-white text-sm">Se souvenir de moi</span>
-        </mat-checkbox>
+        <div class="flex items-center">
+
+          <mat-checkbox formControlName="remember" class="flex-1">
+            <span class="text-sm text-[#b3b3b3]">Se souvenir de moi</span>
+          </mat-checkbox>
+
+          <span class="text-xs text-[#b3b3b3] cursor-pointer">Besoin d'aide ?</span>
+        </div>
       </form>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-10 p-10 bg-transparent-black text-[#737373] border-[#737373] border-solid border-0 border-t-2 sm:border-0">
+
+    <span>Des questions ?</span>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <span class="cursor-pointer">FAQ</span>
+      <span class="cursor-pointer">Centre d'aide</span>
+      <span class="cursor-pointer">Boutique Netflix</span>
+      <span class="cursor-pointer">Conditions d'utilisation</span>
+      <span class="cursor-pointer">Confidentialité</span>
+      <span class="cursor-pointer">Préférences de cookie</span>
+      <span class="cursor-pointer">Mentions légales</span>
+      <span class="cursor-pointer">Choix lié à la pub</span>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-icon matPrefix>language</mat-icon>
+        <mat-select [formControl]="langControl">
+          <mat-option value="Français">Français</mat-option>
+          <mat-option value="Anglais">Anglais</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
 </div>
