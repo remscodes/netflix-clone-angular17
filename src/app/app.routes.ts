@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HOME_PROVIDERS } from './pages/home/home.providers';
+import { BROWSE_PROVIDERS } from './pages/browse/browse.providers';
 
 export const APP_ROUTES: Routes = [
   {
     path: 'browse',
-    providers: [HOME_PROVIDERS],
-    loadChildren: () => import('./pages/home/home.routes').then(m => m.HOME_ROUTES),
+    providers: [BROWSE_PROVIDERS],
+    loadChildren: () => import('./pages/browse/browse.routes').then(m => m.BROWSE_ROUTES),
   },
   {
     path: '',
