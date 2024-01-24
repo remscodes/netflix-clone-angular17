@@ -10,6 +10,7 @@ import { MatInput } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { concatMap, delay, interval, last, map, Observable, take, tap } from 'rxjs';
+import { NetflixLogoComponent } from '../../../../shared/components/netflix-logo/netflix-logo.component';
 import { Auth } from '../../services/auth.service';
 
 @Component({
@@ -27,6 +28,7 @@ import { Auth } from '../../services/auth.service';
     MatOption,
     MatIcon,
     MatPrefix,
+    NetflixLogoComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
