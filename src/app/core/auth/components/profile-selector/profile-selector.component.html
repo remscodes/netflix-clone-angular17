@@ -5,12 +5,12 @@
     <span class="text-3xl md:text-5xl lg:text-7xl">Qui est-ce ?</span>
 
     <div class="flex gap-12 p-10">
-      @for (profile of mockProfiles; track profile.name; let index = $index) {
-        <app-profile-box [profile]="profile" [index]="index" (click)="navigateToHome()"/>
+      @for (profile of mockProfiles; track profile.name) {
+        <app-profile-box [profile]="profile" [index]="$index" (click)="navigateToHome()"/>
       }
     </div>
 
-    <div class="group py-2 px-10 mt-10 rounder border border-solid border-[#808080] cursor-pointer hover:border-white">
+    <div class="group py-2 px-10 my-10 rounder border border-solid border-[#808080] cursor-pointer hover:border-white">
       <span class="text-2xl text-[#808080] group-hover:text-white">Gérer les profils</span>
     </div>
   </div>

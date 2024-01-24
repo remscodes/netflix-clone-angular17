@@ -10,6 +10,7 @@ import { MatInput } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { concatMap, delay, interval, last, map, Observable, take, tap } from 'rxjs';
+import { CreditComponent } from '../../../../components/credit/credit.component';
 import { NetflixLogoComponent } from '../../../../shared/components/netflix-logo/netflix-logo.component';
 import { Auth } from '../../services/auth.service';
 
@@ -29,6 +30,7 @@ import { Auth } from '../../services/auth.service';
     MatIcon,
     MatPrefix,
     NetflixLogoComponent,
+    CreditComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -93,7 +95,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(login!, password!).pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe({
-      next: () => this.router.navigate(['browse']),
+      next: () => this.router.navigate(['profiles']),
     });
   }
 }

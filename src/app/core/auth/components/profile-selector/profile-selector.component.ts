@@ -2,6 +2,7 @@ import { animate, animateChild, group, query, style, transition, trigger, useAni
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { CreditComponent } from '../../../../components/credit/credit.component';
 import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
 import { Profile } from '../../models/profile.model';
 import { ProfileBoxComponent } from '../profile-box/profile-box.component';
@@ -10,8 +11,9 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
   selector: 'app-profile-selector',
   standalone: true,
   imports: [
-    ProfileBoxComponent,
     MatButton,
+    ProfileBoxComponent,
+    CreditComponent,
   ],
   templateUrl: './profile-selector.component.html',
   styleUrl: './profile-selector.component.css',
@@ -42,6 +44,6 @@ export class ProfileSelectorComponent {
   ];
 
   public navigateToHome(): void {
-    this.router.navigate(['home']).then();
+    this.router.navigate(['browse']).then();
   }
 }

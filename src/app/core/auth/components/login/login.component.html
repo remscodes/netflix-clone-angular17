@@ -40,17 +40,22 @@
           <span class="text-xs text-[#b3b3b3] cursor-pointer">Besoin d'aide ?</span>
         </div>
       </form>
+
+      <div class="flex justify-center">
+        <app-credit/>
+      </div>
     </div>
   </div>
 
-  <footer>
+  <footer
+    class="flex flex-row justify-center p-10 bg-transparent-black border-[#737373] border-solid border-0 border-t-2 sm:border-0">
 
     <div
-      class="flex flex-col gap-10 p-10 bg-transparent-black text-[#737373] border-[#737373] border-solid border-0 border-t-2 sm:border-0">
+      class="flex flex-col flex-1 gap-10 max-w-[1000px] text-[#737373]">
 
       <span>Des questions ?</span>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 [&>span]:cursor-pointer">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-sm gap-4 [&>span]:cursor-pointer">
         <span>FAQ</span>
         <span>Centre d'aide</span>
         <span>Boutique Netflix</span>
@@ -58,7 +63,7 @@
         <span>Confidentialité</span>
         <span>Préférences de cookie</span>
         <span>Mentions légales</span>
-        <span>Choix lié à la pub</span>
+        <span>Choix liés à la pub</span>
       </div>
 
       <div>
