@@ -1,6 +1,7 @@
-import { animate, animateChild, group, query, style, transition, trigger } from '@angular/animations';
+import { animate, animateChild, group, query, style, transition, trigger, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, isDevMode } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
 import { Profile } from '../../models/profile.model';
 import { ProfileBoxComponent } from '../profile-box/profile-box.component';
 
@@ -17,9 +18,8 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
   animations: [
     trigger('selectorEnter', [
       transition(':enter', [
-        style({ opacity: 0.8 }),
         group([
-          animate('300ms', style({ opacity: 1 })),
+          useAnimation(FADE_IN_ANIMATION, { params: { from: 0.2 } }),
           query('#profile-selector', [
             style({ transform: 'scale(1.2)' }),
             animate('500ms ease', style({ transform: 'scale(1)' })),
@@ -38,5 +38,5 @@ export class ProfileSelectorComponent {
     { name: 'Dev Senior Kermit', imgUrl: `${isDevMode() ? '/assets/senior-kermit.jpg' : `/netflix-clone-angular17/assets/senior-kermit.jpg`}` },
   ];
 
-  reveal = true
+  public reveal = true;
 }

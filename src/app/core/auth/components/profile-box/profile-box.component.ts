@@ -1,8 +1,7 @@
-import { group, transition, trigger, useAnimation } from '@angular/animations';
+import { animate, group, style, transition, trigger, useAnimation } from '@angular/animations';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
-import { TOP_TO_BOT_ANIMATION } from '../../../../shared/animations/top-to-bot.animation';
 import { RigidImgDirective } from '../../../../shared/directives/rigid-img.directive';
 import { Profile } from '../../models/profile.model';
 
@@ -19,9 +18,10 @@ import { Profile } from '../../models/profile.model';
   animations: [
     trigger('fadeInBottom', [
       transition(':enter', [
+        style({ transform: 'translateY(-20px)' }),
         group([
-          useAnimation(FADE_IN_ANIMATION),
-          useAnimation(TOP_TO_BOT_ANIMATION),
+          useAnimation(FADE_IN_ANIMATION, { params: { duration: '500ms' } }),
+          animate('300ms {{delay}} ease', style({ transform: 'translateY(0)' })),
         ]),
       ]),
     ]),
