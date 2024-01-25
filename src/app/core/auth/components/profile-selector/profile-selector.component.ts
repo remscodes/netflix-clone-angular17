@@ -1,9 +1,10 @@
-import { animate, animateChild, group, query, style, transition, trigger, useAnimation } from '@angular/animations';
+import { animateChild, group, query, transition, trigger, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { CreditComponent } from '../../../../components/credit/credit.component';
-import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
+import { FADE_IN_ANIMATION, FADE_OUT_ANIMATION } from '../../../../shared/animations/fade-in.animation';
+import { SCALE_IN_ANIMATION, SCALE_OUT_ANIMATION } from '../../../../shared/animations/scale.animation';
 import { Profile } from '../../models/profile.model';
 import { ProfileBoxComponent } from '../profile-box/profile-box.component';
 
@@ -19,15 +20,27 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
   styleUrl: './profile-selector.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('selectorEnter', [
+    trigger('selector', [
       transition(':enter', [
         group([
-          useAnimation(FADE_IN_ANIMATION, { params: { from: 0.2 } }),
+          useAnimation(FADE_IN_ANIMATION),
           query('#profile-selector', [
-            style({ transform: 'scale(1.2)' }),
-            animate('500ms ease', style({ transform: 'scale(1)' })),
+            useAnimation(SCALE_OUT_ANIMATION, { params: { duration: '500ms', from: 1.2, to: 1 } }),
           ]),
-          query('@*', animateChild(), { delay: '200ms' }),
+          query('@*', [
+            animateChild(),
+          ], { delay: '200ms' }),
+        ]),
+      ]),
+      transition(':leave', [
+        group([
+          query(':leave @*', [
+            animateChild(),
+          ], { delay: '200ms', optional: true }),
+          useAnimation(FADE_OUT_ANIMATION),
+          query('#profile-selector', [
+            useAnimation(SCALE_IN_ANIMATION, { params: { duration: '200ms', from: 1, to: 1.1 } }),
+          ]),
         ]),
       ]),
     ]),

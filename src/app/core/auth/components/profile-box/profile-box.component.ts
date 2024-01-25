@@ -25,6 +25,7 @@ import { Profile } from '../../models/profile.model';
         ]),
       ]),
     ]),
+    trigger(':leave', [])
   ],
 })
 
