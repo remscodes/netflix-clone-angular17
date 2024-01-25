@@ -1,12 +1,16 @@
 <div class="flex items-center gap-10  py-6 px-12">
 
-  <app-netflix-logo [height]="'24px'" [width]="'100%'"/>
+  <app-netflix-logo [height]="'24px'" [width]="'100%'"  (click)="navigateTo(items[0].route)"/>
 
-  <div class="flex gap-4">
+  <div class="flex flex-1 gap-4">
     @for (item of items; track $index) {
       <div class="cursor-pointer" (click)="navigateTo(item.route)">
         <span class="text-sm text-[#b3b3b3]">{{ item.label }}</span>
       </div>
     }
+  </div>
+
+  <div class="flex justify-center items-center">
+    <mat-icon class="cursor-pointer" color="primary" (click)="logout()">logout</mat-icon>
   </div>
 </div>
