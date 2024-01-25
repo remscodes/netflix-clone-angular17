@@ -1,7 +1,7 @@
 <div [@fadeInBottom]="{ value: '', params: { delay: this.animationDelay() }}"
-     class="group flex flex-col items-center gap-2 cursor-pointer">
+     class="group flex flex-col text-center items-center gap-2 cursor-pointer">
 
-  <div class="image-box group-hover:after:border-solid h-[200px] w-[200px]">
+  <div class="image-box group-hover:after:border-solid h-[150px] w-[150px] lg:h-[200px] lg:w-[200px]">
     <img rigid
          class="rounded"
          [ngSrc]="profile().imgUrl"
@@ -9,5 +9,5 @@
          alt="">
   </div>
 
-  <span class="text-2xl text-[#808080] group-hover:text-white">{{ profile().name }}</span>
+  <span class="text-md md:text-xl text-[#808080] group-hover:text-white">{{ profile().name }}</span>
 </div>

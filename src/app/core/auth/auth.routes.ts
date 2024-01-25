@@ -8,7 +8,7 @@ export const AUTH_ROUTES: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'browse',
+    path: 'profiles',
     component: ProfileSelectorComponent,
   },
 ];

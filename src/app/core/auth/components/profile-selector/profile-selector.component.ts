@@ -1,6 +1,8 @@
 import { animate, animateChild, group, query, style, transition, trigger, useAnimation } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, isDevMode } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { CreditComponent } from '../../../../components/credit/credit.component';
 import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
 import { Profile } from '../../models/profile.model';
 import { ProfileBoxComponent } from '../profile-box/profile-box.component';
@@ -9,8 +11,9 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
   selector: 'app-profile-selector',
   standalone: true,
   imports: [
-    ProfileBoxComponent,
     MatButton,
+    ProfileBoxComponent,
+    CreditComponent,
   ],
   templateUrl: './profile-selector.component.html',
   styleUrl: './profile-selector.component.css',
@@ -32,11 +35,15 @@ import { ProfileBoxComponent } from '../profile-box/profile-box.component';
 })
 export class ProfileSelectorComponent {
 
+  private router = inject(Router);
+
   public mockProfiles: Profile[] = [
-    { name: 'CEO Pepe Frog', imgUrl: `${isDevMode() ? '/assets/ceo-pepe-frog.jpg' : `/netflix-clone-angular17/assets/ceo-pepe-frog.jpg`}` },
-    { name: 'Chad Commercial', imgUrl: `${isDevMode() ? '/assets/gigachad.jpg' : `/netflix-clone-angular17/assets/gigachad.jpg`}` },
+    { name: 'CEO Michael Scott', imgUrl: `${isDevMode() ? '/assets/michael-scott.jpg' : `/netflix-clone-angular17/assets/michael-scott.jpg`}` },
+    { name: 'Commercial Chad', imgUrl: `${isDevMode() ? '/assets/gigachad.jpg' : `/netflix-clone-angular17/assets/gigachad.jpg`}` },
     { name: 'Dev Senior Kermit', imgUrl: `${isDevMode() ? '/assets/senior-kermit.jpg' : `/netflix-clone-angular17/assets/senior-kermit.jpg`}` },
   ];
 
-  public reveal = true;
+  public navigateToHome(): void {
+    this.router.navigate(['browse']).then();
+  }
 }

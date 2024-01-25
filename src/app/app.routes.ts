@@ -1,18 +1,15 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth/guards/auth.guard';
-import { HOME_PROVIDERS } from './pages/home/home.providers';
+import { BROWSE_PROVIDERS } from './pages/browse/browse.providers';
 
 export const APP_ROUTES: Routes = [
-
   {
-    path: 'home',
-    canActivate: [authGuard()],
-    providers: [HOME_PROVIDERS],
-    loadChildren: () => import('./pages/home/home.routes').then(m => m.HOME_ROUTES),
+    path: 'browse',
+    providers: [BROWSE_PROVIDERS],
+    loadChildren: () => import('./pages/browse/browse.routes').then(m => m.BROWSE_ROUTES),
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
 ];

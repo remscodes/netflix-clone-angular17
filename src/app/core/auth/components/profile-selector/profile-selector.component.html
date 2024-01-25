@@ -1,18 +1,23 @@
-<div @selectorEnter class="flex flex-col h-full justify-center text-white select-none overflow-hidden">
+<div @selectorEnter class="flex flex-col h-full text-white select-none overflow-auto">
 
-  <div id="profile-selector" class="flex flex-col gap-4 justify-center items-center">
+  <div class="flex flex-col justify-center items-center flex-1 p-20">
 
-    <span class="text-3xl md:text-5xl lg:text-7xl">Qui est-ce ?</span>
+    <div id="profile-selector" class="flex flex-col gap-4 justify-center items-center">
 
-    <div class="flex gap-12 p-10">
-      @for (profile of mockProfiles; track profile.name; let index = $index) {
-        <app-profile-box [profile]="profile" [index]="index"/>
-      }
-    </div>
+      <span class="text-3xl md:text-5xl lg:text-7xl">Qui est-ce ?</span>
 
-    <div (click)="reveal = !reveal"
-         class="group py-2 px-10 mt-10 rounder border border-solid border-[#808080] cursor-pointer hover:border-white">
-      <span class="text-2xl text-[#808080] group-hover:text-white">Gérer les profils</span>
+      <div class="flex flex-wrap justify-center gap-12 p-10">
+        @for (profile of mockProfiles; track profile.name) {
+          <app-profile-box [profile]="profile" [index]="$index" (click)="navigateToHome()"/>
+        }
+      </div>
+
+      <div
+        class="group py-2 px-10 my-10 rounder border border-solid border-[#808080] cursor-pointer hover:border-white">
+        <span class="text-md lg:text-2xl text-[#808080] group-hover:text-white">Gérer les profils</span>
+      </div>
     </div>
   </div>
+
+
 </div>
