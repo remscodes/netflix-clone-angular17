@@ -8,7 +8,7 @@
 
       <div class="flex flex-wrap justify-center gap-12 p-10">
         @for (profile of mockProfiles; track profile.name) {
-          <app-profile-box [profile]="profile" [index]="$index" (click)="navigateToHome()"/>
+          <app-profile-box [profile]="profile" [index]="$index" (click)="selectProfile($index)"/>
         }
       </div>
 
@@ -18,6 +18,4 @@
       </div>
     </div>
   </div>
-
-
 </div>

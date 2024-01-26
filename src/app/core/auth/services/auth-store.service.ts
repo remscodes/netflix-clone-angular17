@@ -7,4 +7,6 @@ export class AuthStore {
   public userContext = signal<UserContext | null>(null);
 
   public isAuthenticated = computed(() => !!this.userContext());
+
+  public selectedProfileIndex = signal<number | null>(null);
 }

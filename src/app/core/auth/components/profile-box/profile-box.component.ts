@@ -1,9 +1,11 @@
-import { animate, group, style, transition, trigger, useAnimation } from '@angular/animations';
+import { animate, group, style, transition, trigger, useAnimation, AnimationEvent } from '@angular/animations';
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { BOUNCE_ANIMATION } from '../../../../shared/animations/bounce.animation';
 import { FADE_IN_ANIMATION } from '../../../../shared/animations/fade-in.animation';
 import { RigidImgDirective } from '../../../../shared/directives/rigid-img.directive';
 import { Profile } from '../../models/profile.model';
+import { AuthStore } from '../../services/auth-store.service';
 
 @Component({
   selector: 'app-profile-box',
@@ -25,16 +27,24 @@ import { Profile } from '../../models/profile.model';
         ]),
       ]),
     ]),
-    trigger(':leave', [])
+    trigger('selectedProfile', [
+      transition(':leave', [
+        useAnimation(BOUNCE_ANIMATION, { params: { delay: '0ms' } }),
+      ]),
+    ]),
   ],
 })
 
 export class ProfileBoxComponent {
 
   public profile = input.required<Profile>();
+  public index = input.required<number>();
 
-  public animationDelay = input('0ms', {
-    alias: 'index',
-    transform: (v: number) => `${(v + 1) * 100}ms`,
-  });
+  private authStore = inject(AuthStore);
+
+  public selected = computed(() => this.authStore.selectedProfileIndex() === this.index());
+
+  public animationDone($event: AnimationEvent): void {
+    // console.log($event);
+  }
 }

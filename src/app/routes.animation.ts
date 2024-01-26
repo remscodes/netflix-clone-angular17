@@ -5,7 +5,7 @@ import { SCALE_IN_ANIMATION } from './shared/animations/scale.animation';
 const PREPARE_POSITION = animation([
   style({ position: 'relative' }),
   query(':enter, :leave', [
-    style({ position: 'absolute', width: '100%', height: '100%' }),
+    style({ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }),
   ]),
 ]);
 
@@ -41,11 +41,17 @@ export const ROUTES_ANIMATION = trigger('routesAnimation', [
       animateChild(),
     ]),
   ]),
+
   transition('Profiles => Login', [
     useAnimation(ROUTE_PRE_ANIMATION),
     group([
-      query(':leave @*', [
-        animateChild(),
+      query(':leave @selector', [
+        group([
+          useAnimation(FADE_IN_ANIMATION),
+          query('#profile-selector', [
+            useAnimation(SCALE_IN_ANIMATION, { params: { from: 1, to: 1.2 } }),
+          ]),
+        ]),
       ]),
       query(':enter', [
         useAnimation(FADE_IN_ANIMATION),
@@ -55,7 +61,23 @@ export const ROUTES_ANIMATION = trigger('routesAnimation', [
       ]),
     ]),
   ]),
+
   transition('Profiles => Browse', [
+    useAnimation(ROUTE_PRE_ANIMATION),
+    query(':leave @selectedProfile', [
+      animateChild(),
+    ], { optional: true }),
+    group([
+      query(':leave @selector', [
+        animateChild(),
+      ]),
+      query(':enter', [
+        useAnimation(FADE_IN_ANIMATION),
+      ]),
+    ]),
+  ]),
+
+  transition('Browse => Profiles', [
     useAnimation(ROUTE_PRE_ANIMATION),
     group([
       query(':leave', [
@@ -64,18 +86,7 @@ export const ROUTES_ANIMATION = trigger('routesAnimation', [
       query(':enter', [
         useAnimation(FADE_IN_ANIMATION),
       ]),
-      query(':leave @*', [
-        animateChild(),
-      ]),
-    ]),
-  ]),
-  transition('Browse => Profiles', [
-    useAnimation(ROUTE_PRE_ANIMATION),
-    group([
-      query(':leave', [
-        useAnimation(FADE_OUT_ANIMATION),
-      ]),
-      query(':enter', [
+      query(':enter @selector', [
         group([
           useAnimation(FADE_IN_ANIMATION),
           query('#profile-selector', [
@@ -83,9 +94,6 @@ export const ROUTES_ANIMATION = trigger('routesAnimation', [
           ]),
         ]),
       ]),
-    ]),
-    query(':enter @selector', [
-      animateChild(),
     ]),
   ]),
 ]);

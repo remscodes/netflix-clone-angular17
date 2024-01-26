@@ -1,7 +1,10 @@
-<div [@fadeInBottom]="{ value: '', params: { delay: this.animationDelay() }}"
+<div [@fadeInBottom]="{ value: '', params: { delay: (index() + 1) * 100 + 'ms' }}"
      class="group flex flex-col text-center items-center gap-2 cursor-pointer">
 
-  <div class="image-box group-hover:after:border-solid h-[150px] w-[150px] lg:h-[200px] lg:w-[200px]">
+  <div @selectedProfile
+       (@selectedProfile.done)="animationDone($event)"
+       [@.disabled]="!selected()"
+       class="image-box group-hover:after:border-solid h-[150px] w-[150px] lg:h-[200px] lg:w-[200px]">
     <img rigid
          class="rounded"
          [ngSrc]="profile().imgUrl"
