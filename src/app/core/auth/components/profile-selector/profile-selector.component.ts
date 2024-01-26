@@ -56,8 +56,12 @@ export class ProfileSelectorComponent {
 
   public selectProfile($index: number): void {
     this.authStore.selectedProfileIndex.set($index);
-    this.router.navigate(['browse']).then(() => {
-      this.authStore.selectedProfileIndex.set(null);
+    // Without timeout, animation of selected profile only happen once
+    // (otherwise we need to refresh the page to replay the animation)
+    setTimeout(() => {
+      this.router.navigate(['browse']).then(() => {
+        this.authStore.selectedProfileIndex.set(null);
+      });
     });
   }
 }

@@ -1,4 +1,5 @@
 import { animateChild, animation, group, query, style, transition, trigger, useAnimation } from '@angular/animations';
+import { BOUNCE_ANIMATION } from './shared/animations/bounce.animation';
 import { FADE_IN_ANIMATION, FADE_OUT_ANIMATION } from './shared/animations/fade-in.animation';
 import { SCALE_IN_ANIMATION } from './shared/animations/scale.animation';
 
@@ -64,8 +65,8 @@ export const ROUTES_ANIMATION = trigger('routesAnimation', [
 
   transition('Profiles => Browse', [
     useAnimation(ROUTE_PRE_ANIMATION),
-    query(':leave @selectedProfile', [
-      animateChild(),
+    query(':leave .selectedBox', [
+      useAnimation(BOUNCE_ANIMATION),
     ], { optional: true }),
     group([
       query(':leave @selector', [

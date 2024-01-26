@@ -27,11 +27,6 @@ import { AuthStore } from '../../services/auth-store.service';
         ]),
       ]),
     ]),
-    trigger('selectedProfile', [
-      transition(':leave', [
-        useAnimation(BOUNCE_ANIMATION, { params: { delay: '0ms' } }),
-      ]),
-    ]),
   ],
 })
 
@@ -43,8 +38,4 @@ export class ProfileBoxComponent {
   private authStore = inject(AuthStore);
 
   public selected = computed(() => this.authStore.selectedProfileIndex() === this.index());
-
-  public animationDone($event: AnimationEvent): void {
-    // console.log($event);
-  }
 }
