@@ -36,13 +36,22 @@ import { Auth } from '../../services/auth.service';
   styleUrl: './login.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('loginBackgroundEnter', [
+    trigger('loginBackground', [
       transition(':enter', [
         style({ filter: 'brightness(0)', transform: 'scale(1)' }),
         group([
-          animate('2s ease', style({ filter: 'brightness(0.4)' })),
-          animate('4s ease', style({ transform: 'scale(1.05)' })),
+          animate('2s ease',
+            style({ filter: 'brightness(0.4)' }),
+          ),
+          animate('4s ease',
+            style({ transform: 'scale(1.05)' }),
+          ),
         ]),
+      ]),
+      transition(':leave', [
+        animate('200ms ease',
+          style({ filter: 'brightness(0)', transform: 'scale(1)' }),
+        ),
       ]),
     ]),
   ],

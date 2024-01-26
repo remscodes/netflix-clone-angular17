@@ -5,10 +5,12 @@ import { ProfileSelectorComponent } from './components/profile-selector/profile-
 export const AUTH_ROUTES: Routes = [
   {
     path: 'login',
+    data: { animation: 'Login' },
     component: LoginComponent,
   },
   {
     path: 'profiles',
+    data: { animation: 'Profiles' },
     component: ProfileSelectorComponent,
   },
 ];
